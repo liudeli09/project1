@@ -29,8 +29,8 @@
 #content dl dd a p span{font-weight: bold;color: #c81623;font-size: 20px;}
 #content dl dd a p i{text-decoration: line-through;}
 
-#content .men-dress,.digital,.multiple{width: 100%;height: 620px;background: blue;display: none;}
+#content .men-dress,.digital,.multiple{width: 100%;height: 620px;display: none;}
 
-#content .bag,.home{width: 100%;height: 620px;background: pink;display: none;}
+#content .bag,.home{width: 100%;height: 620px;display: none;}
 
-#content .necklace,.face{width: 100%;height: 620px;background: yellow;display: none;}
+#content .necklace,.face{width: 100%;height: 620px;display: none;}
