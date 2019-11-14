@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="css/boli.css"/>
 		<link rel="stylesheet" href="css/list.css"/>
 		<link rel="stylesheet" href="css/index-footer.css"/>
+		<link rel="stylesheet" href="css/pagination.css">
 	</head>
 	<body>
 		<div id="header"></div>
@@ -63,6 +64,7 @@
 					</ul>
 					<ul class="goods2 clear"></ul>
 				</div>
+				<div class="pagination"></div>
 			</div>
 		</section>
 		<section id="foot">
@@ -73,6 +75,7 @@
 	<script src="js/jquery.js"></script>
 	<script src="js/ajax.js"></script>
 	<script src="js/cookie.js"></script>
+	<script src="js/jquery.pagination.js"></script>
 	<script>
 		$("#header").load("http://localhost/weiboli/html-public/header.html");
 	</script>
@@ -166,6 +169,21 @@
 				cont:document.querySelector(".goods2")
 			})
 			
+		$(".pagination").pagination(100,{
+					items_per_page:8,
+					num_display_entries:1,
+					num_edge_entries:2,
+					prev_text:"前一页",
+					next_text:"后一页",
+					current_page:0,
+					// prev_show_always:"true",
+					// next_show_always:"true"
+					callback:function(cb){
+						//输出当前页面的下标
+						console.log(cb);
+					}
+				})
+		
 		
 		
 	</script>

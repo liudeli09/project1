@@ -85,6 +85,7 @@
 	<script src="js/jquery.js"></script>
 	<script src="js/ajax.js"></script>
 	<script src="js/cookie.js"></script>
+	
 	<script>
 		$("#header").load("http://localhost/weiboli/html-public/header.html");
 		$("#footer").load("http://localhost/weiboli/html-public/footer.html");
@@ -136,7 +137,8 @@
 					<div class="box"></div>
 				</div>
 				<div id="bigArea">
-					<img class = "da" src = "${this.res[i].img.img2}"/>
+					<img class="da" src = "${this.res[i].img.img2}"/>
+					<img src = "${this.res[i].img.img1}"/>
 				</div>
 				<ul>
 					<li class="act" ><img src="${this.res[i].img.img2}"/></li>
@@ -174,9 +176,10 @@
                 }
             }
             this.tbody.innerHTML = str;
-
+			
 			this.card();
-
+			this.da =document.querySelector(".da");
+			console.log(this.da);
 			this.mirror();
         }
 		
@@ -229,15 +232,16 @@
 			var wrap = document.getElementById("wrap");
 			var box = document.querySelector(".box");
 			var bigArea = document.getElementById("bigArea");
-			var da =document.querySelector(".da");
+			//var da =document.querySelector(".da");
 			console.log(bigArea);
-			
-			
+
+			var that = this;
 			wrap.onmouseenter = function() {
 				box.style.display = "block";
 				bigArea.style.display = "block";
 				var r = (wrap.clientWidth - box.clientWidth) / (800 - bigArea.clientWidth);
 				// 绑定mousemove事件
+				var _this = that;
 				document.onmousemove = function(e) {
 					// 计算鼠标在页面中的距离
 					var mouseX =  e.pageX;
@@ -263,57 +267,62 @@
 					box.style.top = resultY + "px";
 					//bigArea.style.backgroundPositionX = -resultX / r + "px";
 					//bigArea.style.backgroundPositionY = -resultY / r + "px";
-					da.style.left = -resultX / r + "px";
-					da.style.top = -resultY / r + "px";
+					console.log(_this.da);
+					_this.da.style.left = -resultX / r + "px";
+					
+					_this.da.style.top = -resultY / r + "px";
 					
 					
 				}
-		}
-		wrap.onmouseleave = function() {
-		    box.style.display = "none";
-		    bigArea.style.display = "none";
-		}
-		
-		
-		function offset(dom) {
-		    // 返回一个对象
-		    var obj = {
-		        left: 0,
-		        top: 0
-		    }
-		
-		    // 先让这个对象加上 dom的自己得到定位父元素的距离
-		    obj.left = dom.offsetLeft;
-		    obj.top = dom.offsetTop;
-		    // 判定浏览器是否是IE8 
-		    var isIE8 = window.navigator.userAgent.indexOf("MSIE 8") != -1;
-		
-		
-		    // 循环往上走 累加每一个offsetParent的offsetLeft和clientLeft 
-		    // 加每一个offsetParent的offsetTop和clientTop
-		    var offsetParent = dom.offsetParent;
-		    while (offsetParent != document.body) {
-		        if (isIE8) {
-		            obj.left += offsetParent.offsetLeft;
-		            obj.top += offsetParent.offsetTop;
-		        } else {
-		            obj.left += offsetParent.offsetLeft + offsetParent.clientLeft;
-		            obj.top += offsetParent.offsetTop + offsetParent.clientTop;
-		        }
-		        offsetParent = offsetParent.offsetParent;
-		    }
-		    return obj;
-		}
+			}
+			wrap.onmouseleave = function() {
+				box.style.display = "none";
+				bigArea.style.display = "none";
+			}
 			
+			
+			function offset(dom) {
+				// 返回一个对象
+				var obj = {
+					left: 0,
+					top: 0
+				}
+			
+				// 先让这个对象加上 dom的自己得到定位父元素的距离
+				obj.left = dom.offsetLeft;
+				obj.top = dom.offsetTop;
+				// 判定浏览器是否是IE8 
+				var isIE8 = window.navigator.userAgent.indexOf("MSIE 8") != -1;
+			
+			
+				// 循环往上走 累加每一个offsetParent的offsetLeft和clientLeft 
+				// 加每一个offsetParent的offsetTop和clientTop
+				var offsetParent = dom.offsetParent;
+				while (offsetParent != document.body) {
+					if (isIE8) {
+						obj.left += offsetParent.offsetLeft;
+						obj.top += offsetParent.offsetTop;
+					} else {
+						obj.left += offsetParent.offsetLeft + offsetParent.clientLeft;
+						obj.top += offsetParent.offsetTop + offsetParent.clientTop;
+					}
+					offsetParent = offsetParent.offsetParent;
+				}
+				return obj;
+			}
+				
 		}
 		
 		card(){
+			var that = this;
 			$(".goods-l").children("ul").children("li").click(function(){
-				console.log(1)
-				console.log(this);
 				//这里的this就是点击的当前元素 相当于e
 				$(this).addClass("act").siblings().removeClass("act");
-				$("#wrap").children("img").css("display","none").eq($(this).index()).css("display","block")
+				$("#bigArea").children("img").eq($(this).index()).addClass("da").siblings().removeClass("da");
+				console.log(that.da);
+				that.da = document.querySelector(".da");
+				console.log(that.da);
+				$("#wrap").children("img").css("display","none").eq($(this).index()).css("display","block");
 				console.log($(this).index());
 			})
 		}
@@ -324,6 +333,7 @@
         url:"http://localhost/weiboli/json/goods.json",
         tbody:document.querySelector("article")
     })
+	
 	
 	
 	</script>

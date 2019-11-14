@@ -20,6 +20,7 @@ body{background: #f7f9f7;}
 #detail article .goods-l #wrap{width: 380px;height: 380px;position: absolute;border: 1px solid #000;}
  #detail article .goods-l div.box{position: absolute;top: 0;left: 0;width: 140px;height: 140px;background: url(../imgs/dotpng.png);display: none;}
 #detail article .goods-l #bigArea{width: 380px;height: 380px;position: absolute;top: 0px;left: 425px;border: 1px solid #000;overflow: hidden;display: none;}
+#detail article .goods-l #bigArea img{display: none;}
 #detail article .goods-l #bigArea img.da{width: 800px;height: 800px;position: absolute;left: 0;top: 0;background: #fff;display: block;}
 
 #detail article .goods-r{float: right;width: 523px;}
@@ -28,7 +29,7 @@ body{background: #f7f9f7;}
 #detail article .goods-r ul li{float: left;text-align: center;font:14px/29px "";border-top: #e5e5e5 1px solid;border-bottom: #e5e5e5 1px solid;width: 140px;}
 #detail article .goods-r ul li p:nth-child(1){border-bottom: #e5e5e5 1px solid;}
 #detail article .goods-r ul li p:nth-child(2){border-right: #e5e5e5 1px dashed;}
-#detail article .goods-r ul li p.te{;border-right:none;}
+#detail article .goods-r ul li p.te{border-right:none;}
 
 #detail article .goods-r p.bao{font: 16px/68px "";padding-left: 70px;margin: 15px 0;}
 #detail article .goods-r p.bao i{font-size: 20px;color: #c81623;}
@@ -58,7 +59,7 @@ border-bottom: #e1e1e1 1px solid;font: 16px/60px "";}
 #detail .water{border-radius: 5px;height: 70px;background: #fff;float: left;width: 945px;margin-top: 20px;}
 #detail .water ul{border: #eee 1px solid;border-radius: 5px;}
 #detail .water ul li{width: 183px;font: 14px/70px "";float: left;margin-left:20px ;}
-#detail .water ul li.te{width: 59px;height: 64px;padding: 6px 0 0 10px;background: #c40000;color: #fff;line-height: normal;font-size: 20px;margin-left: none;border-radius: 5px;}
+#detail .water ul li.te{width: 59px;height: 64px;padding: 6px 0 0 20px;background: #c40000;color: #fff;line-height: normal;font-size: 20px;margin-left: 0;border-radius: 5px;}
 #detail .water ul li a{color: #c81623;}
 
 #detail .how{float: left;width: 945px;font: 16px/50px "";height: 50px;text-align: center;margin-top: 10px;border: 1px solid #eee;color: #055094;background: #fff;}
