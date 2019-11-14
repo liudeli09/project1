@@ -20,30 +20,30 @@
 				<aside>
 					<div class="mess">
 						<h3>商家信息</h3>
-						<img src="imgs/ba.png" />
+						<img data-src="imgs/ba.png" />
 						<span>张海***66</span>
 						<p>查看商家所有商品</p>
 					</div>
 					<ul>
 						<p>同类爆款</p>
 						<li>
-							<img src="http://img1.vboly.com/2019/10/12/412034765590000302.jpg_187_187.jpg" />
+							<img data-src="http://img1.vboly.com/2019/10/12/412034765590000302.jpg_187_187.jpg" />
 							<a href="#">【限时免费】20g 儿童四季鼻炎膏</a>
 						</li>
 						<li>
-							<img src="http://img1.vboly.com/2019/11/12/463638034822000674.gif_187_187.gif" />
+							<img data-src="http://img1.vboly.com/2019/11/12/463638034822000674.gif_187_187.gif" />
 							<a href="#">【限时免费】汽车载孙露cd唱片</a>
 						</li>
 						<li>
-							<img src="http://img1.vboly.com/2019/10/17/421121454339000250.jpg_187_187.jpg" />
+							<img data-src="http://img1.vboly.com/2019/10/17/421121454339000250.jpg_187_187.jpg" />
 							<a href="#">【限时抢购】5双 春秋冬运动中筒</a>
 						</li>
 						<li>
-							<img src="http://img1.vboly.com/2019/10/09/416207813357000180.jpg_187_187.jpg" />
+							<img data-src="http://img1.vboly.com/2019/10/09/416207813357000180.jpg_187_187.jpg" />
 							<a href="#">【限时免费】10ml 耳舒保健液</a>
 						</li>
 						<li>
-							<img src="http://img1.vboly.com/2019/11/01/446668714678000738.jpg_187_187.jpg" />
+							<img data-src="http://img1.vboly.com/2019/11/01/446668714678000738.jpg_187_187.jpg" />
 							<a href="#">【京东搜索下单】墙纸壁纸自粘</a>
 						</li>
 					</ul>
@@ -120,7 +120,7 @@
             this.goods = getCookie("goods") ? JSON.parse(getCookie("goods")) : [];
             // 3.拿到cookie中的id与所有商品数据的id做比较
             this.display();
-			console.log(this.goods)
+			//console.log(this.goods)
         }
         display(){
             var str = "";
@@ -179,7 +179,7 @@
 			
 			this.card();
 			this.da =document.querySelector(".da");
-			console.log(this.da);
+			//console.log(this.da);
 			this.mirror();
         }
 		
@@ -233,7 +233,7 @@
 			var box = document.querySelector(".box");
 			var bigArea = document.getElementById("bigArea");
 			//var da =document.querySelector(".da");
-			console.log(bigArea);
+			//console.log(bigArea);
 
 			var that = this;
 			wrap.onmouseenter = function() {
@@ -267,7 +267,7 @@
 					box.style.top = resultY + "px";
 					//bigArea.style.backgroundPositionX = -resultX / r + "px";
 					//bigArea.style.backgroundPositionY = -resultY / r + "px";
-					console.log(_this.da);
+					//console.log(_this.da);
 					_this.da.style.left = -resultX / r + "px";
 					
 					_this.da.style.top = -resultY / r + "px";
@@ -334,8 +334,35 @@
         tbody:document.querySelector("article")
     })
 	
+	//懒加载功能函数
+	var imgs = document.querySelectorAll("img");
+	var clientH = document.documentElement.clientHeight;
+	var scrollT = document.documentElement.scrollTop;
+	
+	var arr = [];
+	for(var i=0;i<imgs.length;i++){
+		arr.push(imgs[i]);
+	}
+	
+	//懒加载的功能函数
+	function lazyLoad(elements,cH,sT){
+		for(var i=0;i<arr.length;i++){
+			if(arr[i].offsetTop < cH + sT){
+				arr[i].src = arr[i].getAttribute("data-src");
+				arr.splice(i,1);
+				i--;
+			}
+		}
+	}
+	lazyLoad(imgs,clientH,scrollT);
 	
 	
+	onscroll = function(){
+		var scrollT = document.documentElement.scrollTop;
+		lazyLoad(imgs,clientH,scrollT);
+	}
+		
+		
 	</script>
 
 

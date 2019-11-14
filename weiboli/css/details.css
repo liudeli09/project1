@@ -64,7 +64,7 @@ border-bottom: #e1e1e1 1px solid;font: 16px/60px "";}
 
 #detail .how{float: left;width: 945px;font: 16px/50px "";height: 50px;text-align: center;margin-top: 10px;border: 1px solid #eee;color: #055094;background: #fff;}
 #detail .how ul{}
-#detail .how ul li{float: left;width: 296px;height: 50px;border-left: 1px solid #eee;}
+#detail .how ul li{float: left;width: 314px;;height: 50px;border-left: 1px solid #eee;}
 #detail .how ul li a{display: block;color: #055094;}
 #detail .how ul li:hover{background: #f2f2f2;}
 

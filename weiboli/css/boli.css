@@ -114,5 +114,9 @@ footer .footer-bottom .footer-imgs img{width: 134px;height: 50px;}
 
 .floor{position: fixed;top: 400px;right: 0;opacity: .8;}
 .floor ul{}
-.floor ul li{width: 35px;height: 35px;background: #fff;margin: 5px 0;text-align: center;border-radius: 5px;padding: 5px;border: 1px solid #ff000091;font: 14px/40px "";color: #CF000E;}
+.floor ul li{width: 35px;height: 35px;background: #fff;margin: 5px 0;text-align: center;border-radius: 5px;padding: 5px;border: 1px solid #ff000091;font: 14px/35px "";color: #CF000E;}
 .floor ul li:hover{background:#ff000091;color: #fff;font:600 16px/2 "";}
+
+#content .building{position: fixed;right:0;top:200px;margin: 0;}
+#content .building p{width: 35px;height: 35px;margin: 5px 0;text-align: center;border-radius: 5px;padding: 5px;border: 1px solid #DA70D6;font: 14px/18px "";background:rgba(216,191,216,.9);color: #6495ED;}
+#content .building p:hover{background: #C71585;color: #fff;}

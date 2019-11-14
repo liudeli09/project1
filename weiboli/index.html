@@ -314,7 +314,7 @@
 				</div>
 			</div>
 			<!-- 衣服商品大块一 -->
-			<div class="dress margin">
+			<div class="dress margin build">
 				<div class="dress-title clear tltle">
 					<s>潮流穿搭</s>
 					<ul><li class="active">潮流女装</li><li>精品男装</li><li>鞋子箱包</li><li>项链配饰</li></ul>
@@ -332,7 +332,7 @@
 			</div>
 			
 			<!-- 生活商品大块一 -->
-			<div class="live margin">
+			<div class="live margin build">
 				<div class="live-title clear tltle">
 					<s>居家生活</s>
 					<ul><li class="active">美食特产</li><li>数码家电</li><li>家居日用</li><li>美容护肤</li></ul>
@@ -350,7 +350,7 @@
 			</div>
 			
 			<!-- 母婴育儿 -->
-			<div class="baby margin">
+			<div class="baby margin build">
 				<div class="baby-title clear tltle">
 					<s>母婴育儿</s>
 					<ul><li class="active">母婴育儿</li><li>综合商品</li></ul>
@@ -363,6 +363,11 @@
 					</div>
 					<div class="multiple"><dl class="baby2"></dl></div>
 				</div>
+			</div>
+			<div class="building">
+				<p>潮流穿搭</p>
+				<p>居家生活</p>
+				<p>母婴育儿</p>
 			</div>
 			<div class="margin show">
 				<h3>优秀晒单</h3>
@@ -720,7 +725,7 @@
 		new List({
 			url:"http://localhost/weiboli/json/goods.json",
 			goods:document.querySelector(".baby2"),
-			imgs:"imgs/hotbag.png",
+			imgs:"imgs/baby.png",
 			start:3,
 			num:11
 		})
@@ -728,12 +733,11 @@
 	</script>
 	<!-- 楼层 -->
 	<script>
-		$(".floor").children("ul").children("li").click(function(){
-		console.log(23)
-			$("html").animate({
-				scrollTop:$(".title").eq($(this).index()).offset().top
+		$(".building").children("p").click(function(){
+				$("html").animate({
+					scrollTop:$(".build").eq($(this).index()).offset().top
+				})
 			})
-		})
 	</script>
 	
 </html>
