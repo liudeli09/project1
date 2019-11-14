@@ -1,0 +1,183 @@
+[
+	{
+	  "id": 1,
+	  "shopId": 1,
+	  "shopName": "京东自营",
+	  "defaultPic": "https://img30.360buyimg.com/popWareDetail/jfs/t3208/194/7616404169/244198/369625db/58b7d093N03520fb7.jpg",
+	  "productId": 1,
+	  "productName": "三只松鼠_零食大礼包",
+	  "color": "黑色",
+	  "size": "18L",
+	  "price": 20,
+	  "count":1
+	},
+	{
+	  "id": 2,
+	  "shopId": 1,
+	  "shopName": "京东自营",
+	  "defaultPic": "https://img14.360buyimg.com/n0/jfs/t2971/15/167732091/93002/204c1016/574d9d9aNe4e6fa7a.jpg",
+	  "productId": 2,
+	  "productName": "小米心跳手环",
+	  "color": "白色",
+	  "size": "20XXL",
+	  "price": 148,
+	  "count": 1
+	},
+    {
+	  "id": 3,
+	  "shopId": 2,
+	  "shopName": "海澜之家",
+	  "defaultPic": "https://img30.360buyimg.com/popWaterMark/jfs/t4075/83/1343091204/132469/9034cb9c/5873496bN68020ba8.jpg",
+	  "productId": 1,
+	  "productName": "短袖T恤男 2017夏季新品",
+	  "color": "蓝色",
+	  "size": "30X",
+	  "price": 181,
+	  "count":1
+	},
+    {
+	  "id": 4,
+	  "shopId": 3,
+	  "shopName": "OPPO官方旗舰店",
+	  "defaultPic": "https://img10.360buyimg.com/cms/jfs/t6064/272/2163314583/157700/442d6477/593c1c49N7c63a7d9.jpg",
+	  "productId": 1,
+	  "productName": "OPPO R11 全网通",
+	  "color": "蓝色",
+	  "size": "30X",
+	  "price": 1999,
+	  "count":1
+	},
+	{
+	  "id": 5,
+	  "shopId": 3,
+	  "shopName": "OPPO官方旗舰店",
+	  "defaultPic": "https://img14.360buyimg.com/n0/jfs/t3142/194/4953241722/254855/1651c2b1/585b9021Nf653e48a.jpg",
+	  "productId": 1,
+	  "productName": "OPPO R9 全网通",
+	  "color": "蓝色",
+	  "size": "30X",
+	  "price": 999,
+	  "count":1
+	}
+]
+
+<script>
+		<!-- class Car{
+			constructor(options) {
+				this.url = options.url;
+				this.tbody = options.tbody;
+				
+				//1.读取到所有商品数据
+				this.load();
+			    
+				//5.事件委托绑定事件
+				this.addEvent();
+			}
+			load(){
+				var that = this;
+				ajaxGet(this.url,function(res){
+					that.res = JSON.parse(res);
+					// console.log(that.res);
+					that.getCookie();
+				})
+			}
+			getCookie(){
+				this.goods = getCookie("goods") ? JSON.parse(getCookie("goods")) : [];
+				this.display();
+			}
+			display(){
+				var str = "";
+				// console.log(this.res);
+				// console.log(this.goods);
+				for(var i = 0;i<this.res.length;i++){
+					for(var j = 0;j<this.goods.length;j++){
+						if(this.res[i].goodsId === this.goods[j].id){
+							str += `
+							<tr style="line-height: 115px;">
+								<td><input class="check" type="checkbox"></td>
+								<td><img src="${this.res[i].img.img1}/></td>
+								<td>${this.res[i].name}</td>
+								<td>¥${this.res[i].price}</td>
+								<td><input type="number" min="1" value="1" class="add"></td>
+								<td></td>
+								<td><span>删除</span></td>
+							</tr>
+							`;
+						}
+					}
+					
+				}
+				this.tbody.innerHTML = str;
+			}
+			
+			//如果使用事件委托 最好使用事件监听事件 有可能绑定多个事件
+			addEvent(){
+				var that = this;
+				this.tbody.addEventListener("click",function(eve){
+					if(eve.target.tagName == "SPAN"){
+						that.id = eve.target.parentNode.parentNode.getAttribute("index");
+						eve.target.parentNode.parentNode.remove();
+						that.updateCookie(function(i){
+							that.goods.splice(i,1);
+						});
+					}
+				})
+				
+				this.tbody.addEventListener("input",function(eve){
+					if(eve.target.tagName == "INPUT"){
+						that.id = eve.target.parentNode.parentNode.getAttribute("index");
+						//that.value = eve.target.value;
+						that.updateCookie(function(i){
+							that.goods[i].num = eve.target.value;
+						});
+					}
+				})
+			}
+			
+			updateCookie(cb){
+				//是真正的删除cookie吗？不是
+				//因为只有一条getCookie，里面的数据是数组的形式
+				//从这条cookie中剔除这个数据
+				for(var i = 0;i<this.goods.length;i++){
+					if(this.goods[i].id === this.id){
+						cb(i);
+					}
+				}
+				//还要村回去
+				setCookie("goods",JSON.stringify(this.goods));
+			}
+			
+			/*changeCookie(){
+				for(var i = 0;i<this.goods.length;i++){
+					if(this.goods[i].id === this.id){
+						this.goods[i].num = this.value;
+					}
+				}
+				setCookie("goods",JSON.stringify(this.goods));
+			}*/
+		}
+		
+		new Car({
+			url:"http://localhost/day6/shopping/goods.json",
+			tbody:document.querySelector("tbody")
+		}) -->
+	</script>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+<tr style="line-height: 115px;">
+	<td><input class="check" type="checkbox"></td>
+	<td><img src="${this.res[i].img.img1}"/></td>
+	<td>${this.res[i].name}</td>
+	<td>¥${this.res[i].price}</td>
+	<td><input type="number" min="1" value="1" class="add"></td>
+	<td></td>
+	<td><span>删除</span></td>
+</tr>

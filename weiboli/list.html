@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="referrer" content="no-referrer">
+		<title></title>
+		<link rel="stylesheet" href="css/public.css"/>
+		<link rel="stylesheet" href="css/boli.css"/>
+		<link rel="stylesheet" href="css/list.css"/>
+		<link rel="stylesheet" href="css/index-footer.css"/>
+	</head>
+	<body>
+		<div id="header"></div>
+		<section id="menu">
+			<div class="margin">
+				<div class="menu-top">
+					<ul>
+						<li>
+							<a href=""></a>
+						</li>
+						<li>
+							<a href=""></a>
+						</li>
+						<li>
+							<a href=""></a>
+						</li>
+						<li>
+							<a href=""></a>
+						</li>
+					</ul>
+				</div>
+				<div class="menu-middle">
+					<ul class="menu-all">
+						<li><a href="#">全部商品</a></li>
+						<li><a href="#">潮流女装</a></li>
+						<li><a href="#">精品男装</a></li>
+						<li><a href="#">鞋子箱包</a></li>
+						<li><a href="#">时尚配饰</a></li>
+						<li><a href="#">美食特产</a></li>
+						<li><a href="#">数码家电</a></li>
+						<li><a href="#">家居日用</a></li>
+						<li><a href="#">美容护肤</a></li>
+						<li><a href="#">母婴育儿</a></li>
+						<li><a href="#">综合商品</a></li>
+					</ul>
+					<ul class="sort clear">
+						<li><a href="#">综合排序时间</a></li>
+						<li><a href="#">时间 ↑</a></li>
+						<li><a href="#">↑人气</a></li>
+						<li><a href="#">↓价格</a></li>
+						<li><a href="#">↑份数 ↓</a></li>
+					</ul>
+				</div>
+				<div class="menu-bottom">
+					<ul class="clear goods">
+						<!-- <li>
+							<a href="#">
+								<img src="imgs/weixin.png" />
+								<i>【限时抢购】时尚运动跑步鞋子</i>
+								<p><em>￥9.9</em><s>我要抢购</s></p>
+							</a>
+						</li> -->
+					</ul>
+				</div>
+			</div>
+		</section>
+		<section id="foot">
+			
+		</section>
+	</body>
+	
+	<script src="js/jquery.js"></script>
+	<script src="js/ajax.js"></script>
+	<script src="js/cookie.js"></script>
+	<script>
+		$("#header").load("http://localhost/weiboli/html-public/header.html");
+	</script>
+	
+	<script>
+		$("#foot").load("http://localhost/weiboli/html-public/footer.html");
+	</script>
+
+	<!-- cookie -->
+	<script>
+		
+		class List2{
+				constructor(options) {
+					//1.准备属性
+					this.cont = options.cont;
+					this.url = options.url;
+					
+					//开启请求
+					this.load();
+					
+					//事件委托绑定事件
+					this.addEvent();
+				}
+				load(){
+					var that = this;
+					ajaxGet(this.url,function(res){
+						that.res = JSON.parse(res);
+						//3.渲染页面
+						that.display();
+					})
+				}
+				display(){
+					var str = "";
+					for(var i = 0;i<this.res.length;i++){
+						str += `<li index="${this.res[i].id}">
+								<a href="details.html">
+									<img src="${this.res[i].img.img2}" />
+									<i>${this.res[i].name}</i>
+									<p><em>${this.res[i].price}</em><s class="btn">我要抢购</s></p>
+								</a>
+							</li>`;
+					}
+					this.cont.innerHTML = str;
+				}
+				addEvent(){
+					var that = this;
+					this.cont.onclick = function(e){
+						if(e.target.className == "btn"){
+				console.log(2);
+							//5.记录id getAttribute可获得自定义属性值
+							that.id = e.target.parentNode.parentNode.parentNode.getAttribute("index");
+							//console.log(that.id);
+							//6.准备cookie
+							that.setCookie();
+						}
+					}
+				}
+				setCookie(){
+					this.goods = getCookie("goods") ? JSON.parse(getCookie("goods")) : [];
+					//为空，第一次加入购物车：cookie也为空
+					if(this.goods.length == 0){
+						this.goods.push({
+							id:this.id
+						})
+					}else{
+						//不为空：不是第一次加入购物车
+						this.goods = this.goods.splice(0,1,{id:this.id})
+						var onoff = true; //用来记录是新商品的状态
+						for (var i = 0;i<this.goods.length;i++){
+							if(this.goods[i].id === this.id){
+								onoff = false;
+							}
+						} 
+						
+						if(onoff){
+							this.goods.push({
+								id:this.id
+							})
+						}
+						
+					}
+					//数组操作结束后,再存回cookie
+					setCookie("goods",JSON.stringify(this.goods));
+				}
+			}
+			
+			new List2({
+				url:"http://localhost/weiboli/json/goods.json",
+				cont:document.querySelector(".goods")
+			})
+			
+		
+		
+	</script>
+</html>

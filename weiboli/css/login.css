@@ -1,0 +1,41 @@
+@charset "utf-8";
+/* CSS Document */
+
+.margin{ width:1200px; margin:0 auto;}
+
+header{}
+header a{}
+header a img{margin: 30px 0 0 33px;}
+
+#main{height: 640px;}
+#main .packet{float: left;margin-top: 20px;}
+#main .packet a{}
+#main .packet a img{}
+
+#main .main-r{float: right;width: 390px;padding: 0 85px;text-align: center;}
+#main .main-r h3{font-size: 24px;height: 32px;line-height: 32px;margin: 22px 0 30px 0;}
+#main .main-r .login-main{width: 390px;}
+#main .main-r .login-main ul{width: 390px;height: 35px;}
+    
+#main .main-r .login-main ul li{width: 50%;float: left;line-height: 35px;text-align: center;border-bottom: 2px solid #ddd;
+cursor: pointer;font-size: 16px;}
+#main .main-r .login-main ul li.active-login{color: #df1525;
+    border-color: #df1525;}
+#main .main-r .login-main .login-way{}
+#main .main-r .login-main .login-way .login-l{}
+#main .main-r .login-main .login-way .login-l form{}
+#main .main-r .login-main .login-way .login-l form .txt,.pass{padding: 0 10px 0 33px;width: 345px;height: 48px;line-height: 48px;border: 1px #cfcfcf solid;border-radius: 4px;}
+#main .main-r .login-main .login-way .login-l form .txt{margin: 40px 0;}
+#main .main-r .login-main .login-way .login-l form .pass{margin-bottom: 20px;}
+#main .main-r .login-main .login-way .login-l .form-bot{display: flex;justify-content: space-between;}
+#main .main-r .login-main .login-way .login-l .check{}
+#main .main-r .login-main .login-way .login-l .sub{width: 251px;height: 63px;background: #DB252B;border: none;cursor: pointer;color: #fff;font-size: 26px;border-radius: 6px;margin-top: 35px;}
+
+#main .qq{margin-top: 40px;}
+#main .qq p{font: 14px/2 "";}
+#main .qq p a{color: #167cd3;}
+
+#main .main-r .login-r{width: 390px;display: flex;justify-content: space-around;flex-wrap: wrap;display: none;padding-top: 40px;}
+#main .main-r .login-r img{}
+#main .main-r .login-r p{line-height: 20px;margin-top: 30px;}
+#main .main-r .login-r p a{color: #df1525;}

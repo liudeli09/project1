@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="referrer" content="no-referrer">
+		<title></title>
+		<link rel="stylesheet" href="css/public.css"/>
+		<link rel="stylesheet" href="css/login.css"/>
+		<link rel="stylesheet" href="css/footer.css"/>
+	</head>
+	<body>
+		<header class="margin">
+			<a href="index.html"><img src="https://login.vboly.com/images/vboly/vboly_logo.png?v=1"/></a>
+		</header>
+		<section id="main" class="margin clear">
+			<div class="packet">
+				<a href="#">
+					<img src="https://login.vboly.com/images/vboly/login_pic.jpg?v=3" />
+				</a>
+			</div>
+			<div class="main-r">
+				<h3>欢迎登录微薄利</h3>
+				<div class="login-main">
+					<ul><li class="active-login">账户登录</li><li>扫码登录</li></ul>
+					<div class="login-way">
+						<div class="login-l">
+							<form>
+								<input class="txt" type="text" /><br />
+								<input class="pass" type="password" /><br />
+							</form>
+							<div class="form-bot">
+								<span><input class="check" type="checkbox" />记住密码</span>
+								<span><a href="#">忘记密码？</a></span>
+							</div>
+							<input class="sub" type="submit" value="登录" />
+						</div>
+						<div class="login-r">
+							<img src="https://login.vboly.com/images/vboly/QuickMarkHelp.png" />
+							<img src="https://login.vboly.com/images/vboly/QuickMarkHelp.png" />
+							<p>打开 <a href="#">微薄利APP</a> 扫码登录</p>
+						</div>
+					</div>
+				</div>
+				<div class="qq">
+					<a href="#"><img src="http://qzonestyle.gtimg.cn/qzone/vas/opensns/res/img/Connect_logo_5.png"/></a>
+					<p>还没有微薄利账号? <a href="register.html">立即注册</a></p>
+				</div>
+			</div>
+		</section>
+		<section id="foot">
+			
+		</section>
+	</body>
+	<script src="js/jquery.js"></script>
+	
+	<script>
+		$("#foot").load("http://localhost/weiboli/html-public/public.html footer",function(a,b,c){
+		    //解决1 $("header li").click(function(){
+		    //     console.log(1)
+		    // })
+			//a:html数据 包括标签
+			//b:状态 成功 或失败
+			//c:xhr对象
+		    console.log(a)
+		    console.log(b)
+		    console.log(c)
+		});
+	</script>
+	
+	<script>
+		$(".login-main").children("ul").children("li").click(function(){
+			$(this).addClass("active-login").siblings().removeClass("active-login");
+			$(".login-way").children("div").css("display","none").eq($(this).index()).css("display","block")
+		})
+		
+	</script>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="referrer" content="no-referrer">
+		<title></title>
+		<link rel="stylesheet" href="css/public.css"/>
+		<link rel="stylesheet" href="css/boli.css"/>
+		<link rel="stylesheet" href="css/index-footer.css"/>
+		<link rel="stylesheet" href="css/car.css"/>
+	</head>
+	<body>
+		<section id="header"></section>
+		<main class="margin">
+			<div class="car-all">
+				<table cellspacing="0" width="1000px" align="center">
+					<thead>
+						<tr style="font-weight: 500;">
+							<th class="all">全选<input type="checkbox"></th>
+							<th colspan="2">商品</th>
+							<th>单价</th>
+							<th>数量</th>
+							<th>小计</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody style="text-align: center;">
+						<!-- <tr style="line-height: 115px;">
+							<td><input class="check" type="checkbox"></td>
+							<td><img src="imgs/fooer4.png"/></td>
+							<td>依意浓棉服女轻薄小棉袄2019新款外套</td>
+							<td>¥158.00</td>
+							<td><input type="number" min="1" value="${this.goods[j].num}" class="add"></td>
+							<td></td>
+							<td><span>删除</span></td>
+						</tr> -->
+					</tbody>
+					<tfoot>
+						<td colspan="7" style="text-align: center;line-height: 40px;" class="addall">合计：</td>
+					</tfoot>
+				</table>
+			</div>
+		</main>
+		<section id="foot"></section>
+	</body>
+	
+	<script src="js/jquery.js"></script>
+	<script src="js/ajax.js"></script>
+	<script src="js/cookie.js"></script>
+	<script>
+		$("#header").load("http://localhost/weiboli/html-public/header.html #top");
+		$("#foot").load("http://localhost/weiboli/html-public/footer.html");
+	</script>
+	
+	
+	
+	
+	<script>
+		
+		class Car{
+			constructor(options) {
+				this.url = options.url;
+				this.tbody = options.tbody;
+				
+				//1.读取到所有商品数据
+				this.load();
+			    
+				//5.事件委托绑定事件
+				this.addEvent();
+			}
+			load(){
+				var that = this;
+				ajaxGet(this.url,function(res){
+					that.res = JSON.parse(res);
+					// console.log(that.res);
+					that.getCookie();
+				})
+			}
+			getCookie(){
+				this.cars = getCookie("cars") ? JSON.parse(getCookie("cars")) : [];
+				this.display();
+			}
+			display(){
+				var str = "";
+				for(var i = 0;i<this.res.length;i++){
+					for(var j = 0;j<this.cars.length;j++){
+						if(this.res[i].id == this.cars[j].id){
+							str += `
+							<tr style="line-height: 115px;" indexs="${this.cars[j].id}">
+								<td><input class="check" type="checkbox"></td>
+								<td><img src="${this.res[i].img.img1}"/></td>
+								<td>${this.res[i].name}</td>
+								<td>${this.res[i].price}</td>
+								<td><input type="number" min="1" value="${this.cars[j].num}" class="add"></td>
+								<td></td>
+								<td><span>删除</span></td>
+							</tr>
+							`;
+						}
+					}
+					
+				}
+				this.tbody.innerHTML = str;
+			}
+			
+			//如果使用事件委托 最好使用事件监听事件 有可能绑定多个事件
+			addEvent(){
+				var that = this;
+				this.tbody.addEventListener("click",function(eve){
+					if(eve.target.tagName == "SPAN"){
+						that.id = eve.target.parentNode.parentNode.getAttribute("indexs");
+						eve.target.parentNode.parentNode.remove();
+						that.updateCookie(function(i){
+							var a = that.cars.splice(i,1);
+							console.log(a);
+						});
+					}
+				})
+				
+				this.tbody.addEventListener("input",function(eve){
+					if(eve.target.tagName == "INPUT"){
+						that.id = eve.target.parentNode.parentNode.getAttribute("indexs");
+						//that.value = eve.target.value;
+						that.updateCookie(function(i){
+							that.cars[i].num = eve.target.value;
+							//计算价格
+							var a = parseFloat(eve.target.value);
+							var b = parseFloat(eve.target.parentNode.previousElementSibling.innerHTML);
+							console.log(b);
+							eve.target.parentNode.nextElementSibling.innerHTML = (a * b).toFixed(2);
+							
+						});
+					}
+				})
+				
+				//添加单击
+				
+				this.tbody.addEventListener("input",function(eve){
+					if(eve.target.className == "check"){
+						that.id = eve.target.parentNode.parentNode.getAttribute("indexs");
+						console.log(that.id);
+						that.sum1 = eve.target.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.innerHTML;
+						console.log(that.sum1);
+						that.sum2 = eve.target.parentNode.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.firstChild.value;
+						console.log(that.sum2);
+						that.sum = (that.sum1 * that.sum2).toFixed(2);
+						eve.target.parentNode.parentNode.lastElementChild.previousElementSibling.innerHTML = "￥" + that.sum;
+						
+						that.updateCookie(function(i){
+							that.cars[i].num = that.sum2;
+							
+						});
+					}
+				})
+				
+				//全选事件
+				var all = document.querySelector(".all");
+				var addall = document.querySelector(".addall")
+				all.onclick = function(){
+					that.cars = getCookie("cars") ? JSON.parse(getCookie("cars")) : [];
+					var c = [];
+					var a = [];
+					for(var i = 0;i<that.cars.length;i++){
+						a.push(parseFloat(that.cars[i].num));
+						console.log(a)
+						if(that.cars != []){
+							for(var j = 0;j<that.res.length;j++){
+								if(that.cars[i].id == that.res[j].id){
+									c.push(that.res[j].price);
+									console.log(c);
+								}
+							}
+							
+						}
+					}
+					
+					var str = "";
+					for(var i = 0;i<a.length;i++){
+						
+						str = +((a[i] * c[i]).toFixed(2));
+						console.log(str)
+						console.log(typeof(str));
+					}
+
+				}
+				
+				
+			}
+			
+			updateCookie(cb){
+				//是真正的删除cookie吗？不是
+				//因为只有一条getCookie，里面的数据是数组的形式
+				//从这条cookie中剔除这个数据
+				for(var i = 0;i<this.cars.length;i++){
+					if(this.cars[i].id === this.id){
+						cb(i);
+					}
+				}
+				//还要村回去
+				setCookie("cars",JSON.stringify(this.cars));
+			}
+
+		}
+		
+		new Car({
+			url:"http://localhost/weiboli/json/goods.json",
+			tbody:document.querySelector("tbody")
+		})
+	</script>
+</html>

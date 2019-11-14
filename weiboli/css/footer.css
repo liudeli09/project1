@@ -1,0 +1,10 @@
+footer{}
+footer .foot-top{background: url(../imgs/footer.png) right no-repeat;}
+footer .foot-top ul{border-top: 1px #f4f4f4 solid;border-bottom: 1px #f4f4f4 solid;height: 60px;line-height: 60px;}
+footer .foot-top ul li{float: left;}
+footer .foot-top ul li a{padding: 0 10px;border-right: 1px #cccccc solid;height: 14px;color: #666666;}
+footer .foot-top ul li a:hover{color: red;}
+footer .foot-top ul li.foot-top-r{ margin: 0 25px 0 15px;color: #000;color: #666666;}
+
+footer .foot-bot{color: #666666;}
+footer .foot-bot p{font: 12px/2.2 "";}

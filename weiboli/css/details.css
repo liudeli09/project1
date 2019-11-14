@@ -1,0 +1,32 @@
+@charset "utf-8";
+/* CSS Document */
+
+.margin{ width:1200px; margin:0 auto;}
+
+#detail{margin-top: 20px;}
+#detail article{float: left;border: 1px solid #eee;padding: 10px;border-radius: 0 0 5px 5px;background: #fff;width: 950px;}
+#detail article h3{height: 39px;line-height: 39px;border-bottom: 1px solid #eee;padding: 0 15px 0 30px;margin-bottom: 10px;}
+#detail article .goods-l{padding-left: 5px;width: 380px;float: left;}
+#detail article .goods-l img{width: 380px;height: 380px;}
+#detail article .goods-l ul{height: 68px;margin-top: 20px;}
+#detail article .goods-l ul li{float: left;width: 64px;height: 64px;border: 2px solid #FF7E00;padding: 0;margin-right: 10px;}
+#detail article .goods-l ul li img{width: 64px;height: 64px;}
+
+#detail article .goods-r{float: right;width: 523px;}
+#detail article .goods-r h4{font-size: 16px;line-height: 24px;height: 53px;width: 420px;font-weight: 700;margin-bottom: 15px;}
+#detail article .goods-r ul{}
+#detail article .goods-r ul li{float: left;text-align: center;font:14px/29px "";border-top: #e5e5e5 1px solid;border-bottom: #e5e5e5 1px solid;width: 140px;}
+#detail article .goods-r ul li p:nth-child(1){border-bottom: #e5e5e5 1px solid;}
+#detail article .goods-r ul li p:nth-child(2){border-right: #e5e5e5 1px dashed;}
+#detail article .goods-r ul li p.te{;border-right:none;}
+
+#detail article .goods-r p.bao{font: 16px/68px "";padding-left: 70px;margin: 15px 0;}
+#detail article .goods-r p.bao i{font-size: 20px;color: #c81623;}
+	
+#detail article .goods-r .last{border: #e1e1e1 1px solid;background: #f6f6f6;}
+#detail article .goods-r .last p{height: 60px;padding: 26px 25px 0;
+border-bottom: #e1e1e1 1px solid;font: 16px/60px "";}
+#detail article .goods-r .last p s{font: 36px/60px "";color: #c81623;}
+#detail article .goods-r .last p .buy{display: inline-block;float: right;width: 90px;height: 36px;text-align: center;font: 14px/36px "";background: #c81623;color: #fff;border-radius: 5px;cursor: pointer;}
+#detail article .goods-r .last span{display: block;float: left;width: 33%;text-align: center;font: 14px/60px "";}
+#detail article .goods-r .last span i{color: #c81623;}

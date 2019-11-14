@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="referrer" content="no-referrer">
+		<title></title>
+		<link rel="stylesheet" href="css/public.css"/>
+		<link rel="stylesheet" href="css/boli.css"/>
+		<link rel="stylesheet" href="css/index-footer.css"/>
+		<link rel="stylesheet" href="css/details.css"/>
+	</head>
+	<body>
+		<section id="header"></section>
+		
+		<section id="detail" class="clear">
+			<div class="margin">
+				<article>
+					
+				</article>
+			</div>
+		</section>
+		
+		<section id="footer"></section>
+	</body>
+	
+	<script src="js/jquery.js"></script>
+	<script src="js/ajax.js"></script>
+	<script src="js/cookie.js"></script>
+	<script>
+		$("#header").load("http://localhost/weiboli/html-public/header.html");
+		$("#footer").load("http://localhost/weiboli/html-public/footer.html");
+	</script>
+	
+	<!-- details -->
+	<script> 
+		class Detail{
+        constructor(options){
+            this.url = options.url;
+            this.tbody = options.tbody;
+            
+            // 1.读取到所有商品数据
+            this.load();
+
+            // 5.事件委托绑定事件
+            this.addEvent();
+        }
+		
+        load(){
+            var that = this;
+            ajaxGet(this.url,function(res){
+                that.res = JSON.parse(res);
+                // 2.读取到cookie
+                that.getCookie();
+            })
+        }
+        getCookie(){
+            this.goods = getCookie("goods") ? JSON.parse(getCookie("goods")) : [];
+            // 3.拿到cookie中的id与所有商品数据的id做比较
+            this.display();
+			console.log(this.goods)
+        }
+        display(){
+            var str = "";
+            for(var i=0;i<this.res.length;i++){
+				for(var j=0;j<this.goods.length;j++){
+                    if(this.res[i].id == this.goods[this.goods.length-1].id){
+                        // 4.相同了，渲染这个数据（就是添加到购物车的商品）
+                        str += `<h3>${this.res[i].name}</h3>
+		<div class="goods-main">
+			<div class="goods-l">
+				<img src="${this.res[i].img.img2}" />
+				<ul>
+					<li><img src="${this.res[i].img.img1}"/></li>
+					<li><img src="${this.res[i].img.img2}"/></li>
+				</ul>
+			</div>
+			<div class="goods-r">
+				<h4>${this.res[i].name}</h4>
+				<ul class="clear">
+					<li>
+						<p>限量份数</p>
+						<p>${this.res[i].introduce.number}</p>
+					</li>
+					<li>
+						<p>剩余份数</p>
+						<p>${this.res[i].introduce.Surplus}</p>
+					</li>
+					<li>
+						<p>剩余时间</p>
+						<p class="te">${this.res[i].introduce.time}</p>
+					</li>
+				</ul>
+				<p class="bao">商家已存入担保金 <i>136.50</i> 元请您放心购买！</p>
+				<div class="last clear" carindex="${this.res[i].id}">
+					<p class="p">折后价:<s>${this.res[i].price}</s><a href="car.html" class="buy">我要抢购</a></p>
+					<span>下单价： <i>${this.res[i].price}</i> 元</span>
+					<span>优惠金额： <i>${this.res[i].introduce.discount1}</i> 元</span>
+					<span>折扣： <i>${this.res[i].introduce.discount2}</i> 折</span>
+				</div>
+			</div>
+		</div>
+		`;
+		break;
+                    }
+                }
+            }
+            this.tbody.innerHTML = str;
+        }
+		
+        addEvent(){
+            var that = this;
+            this.tbody.onclick = function(eve){
+                if(eve.target.className == "buy"){
+                    // 5.记录id
+                    that.id = eve.target.parentNode.parentNode.getAttribute("carindex");
+					console.log(that.id);
+                    // 6.准备存cookie
+                    that.setCookie();
+                }
+            }
+        }
+		
+		//存购物车的getCookie
+		
+		setCookie(){
+		    this.cars = getCookie("cars") ? JSON.parse(getCookie("cars")) : [];
+		    if(this.cars.length == 0){
+		        this.cars.push({
+		            id:this.id,
+		            num:1
+		        })
+		    }else{
+		        // 7-3.不为空：不是第一次加入购物车：
+		        var onoff = true;   //用来记录是否是新商品的状态
+		        for(var i=0;i<this.cars.length;i++){
+		            // 7-4.判断当前商品，新还是旧
+		            if(this.cars[i].id === this.id){
+		                // 7-5.旧：修改数据,同时修改是否是新商品的状态
+		                this.cars[i].num++;
+		                onoff = false;
+		            }
+		        }
+		        if(onoff){
+		            this.cars.push({
+		                id:this.id,
+		                num:1
+		            })
+		        }
+		    }
+		    // 8.数组的操作结束后，一定要再存回cookie
+		    setCookie("cars",JSON.stringify(this.cars));
+		}
+		
+		
+    }
+
+    new Detail({
+        url:"http://localhost/weiboli/json/goods.json",
+        tbody:document.querySelector("article")
+    })
+	
+	</script>
+	
+	
+	// 购物车cookie
+	
+	<script>
+		
+		
+	</script>
+	
+</html>

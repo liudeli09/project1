@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="referrer" content="no-referrer">
+		<title></title>
+		<link rel="stylesheet" href="css/public.css"/>
+		<link rel="stylesheet" href="css/register.css"/>
+		<link rel="stylesheet" href="css/footer.css"/>
+	</head>
+	<body>
+		<header class="margin">
+			<div class="register-l">
+				<span>注册微薄利账号</span>
+				<a href="index.html"><img src="https://login.vboly.com/images/vboly/vlogo_line.jpg"/></a>
+			</div>
+			<div class="register-r">
+				<span>已有微薄利账号？</span>
+				<a  class="sub" href="login.html">登录</a>
+				<!-- <input type="submit" value="登录" /> -->
+			</div>
+		</header>
+		<main>
+			<div class="register-main">
+				<form>
+					用户名：&nbsp;&nbsp;&nbsp;<input type="text" class="user" placeholder="用户名长度为4-14字符" /><br />
+					登录密码：&nbsp;&nbsp;<input type="password" class="pass" placeholder="长度为6-16字符，不可为纯数字" /><br />
+					确认密码：&nbsp;&nbsp;<input type="password" class="pass-again" placeholder="重复登录密码" /><br />
+					手机：&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="tel" placeholder="请输入手机号以获取验证码" /><br />
+					输入验证码：&nbsp;<input type="text" class="code" />
+					<input type="button" class="code-btn" value="点击获取" /><br />
+				</form>
+				<div class="drag-reg"></div>
+				<input type="button" class="register3" value="注册" />
+			</div>
+		</main>
+		<section id="foot1"></section>
+	</body>
+	
+	<script src="js/jquery.js"></script>
+	<script>
+		 $("#foot1").load("http://localhost/weiboli/html-public/public.html footer",function(a,b,c){
+        //解决1 $("header li").click(function(){
+        //     console.log(1)
+        // })
+		//a:html数据 包括标签
+		//b:状态 成功 或失败
+		//c:xhr对象
+        console.log(a)
+        console.log(b)
+        console.log(c)
+    });
+		
+	</script>
+	
+</html>

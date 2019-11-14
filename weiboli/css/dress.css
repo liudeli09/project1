@@ -1,0 +1,36 @@
+@charset "utf-8";
+/* CSS Document */
+
+.margin{ width:1200px; margin:0 auto;}
+
+#content{}
+#content .dress,.live,.baby{margin-top: 40px;}
+#content .dress .dress-title,.live .live-title,.baby .baby-title{height: 52px;line-height: 52px;font-weight: 700;border-bottom: 1px solid red;padding-left: 80px;}
+#content .dress s,.live s,.baby s{float: left;line-height: 52px;font-weight: 700;display: inline-block;font-size: 20px;color: #fff;width: 120px;text-align: center;border-radius: 6px;}
+.dress-title{background: url(../imgs/chaoliu.png) left no-repeat;}
+.dress-title s{background: #fe1360;display: inline-block;}
+.live-title{background: url(../imgs/live.png) left no-repeat;}
+.live s{background: #feb12a;display: inline-block;}
+.baby-title{background: url(../imgs/ba.png) left no-repeat;}
+.baby s{background: #fc7f7f;display: inline-block;}
+#content ul{float: right;}
+#content ul li{color: #000;font-weight: 600;float: left;cursor: pointer;font-size: 18px;width: 112px;}
+#content ul li.active{color: #fe1360;font-weight: 700;}
+
+#content .goods-dress,.goods-live,.baby-live{height: 620px;}
+#content .women-dress,.food,.mom{width: 100%;height: 620px;}
+#content dl{display: flex;justify-content: space-around;flex-wrap: wrap;}
+#content dl dt{width: 458px;height: 286px;margin-left: 14px;margin-top: 6px;}
+#content  dl dd{width: 230px;height: 300px;border: 1px solid #e7e7e7;margin-top: 6px;}
+#content dl dd a{display: flex;justify-content: center;flex-wrap: wrap;padding-top: 10px;}
+#content dl dd a img{width: 216px;height: 206px;}
+#content dl dd a i{overflow: hidden;white-space: nowrap;text-overflow: ellipsis;height: 30px;font-size: 14px;color: #333;margin-top: 11px;}
+#content dl dd a p{width: 216px;height: 40px;}
+#content dl dd a p span{font-weight: bold;color: #c81623;font-size: 20px;}
+#content dl dd a p i{text-decoration: line-through;}
+
+#content .men-dress,.digital,.multiple{width: 100%;height: 620px;background: blue;display: none;}
+
+#content .bag,.home{width: 100%;height: 620px;background: pink;display: none;}
+
+#content .necklace,.face{width: 100%;height: 620px;background: yellow;display: none;}
