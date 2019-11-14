@@ -16,16 +16,16 @@
 				<div class="menu-top">
 					<ul>
 						<li>
-							<a href=""></a>
+							<a href="#"><img src="imgs/list1.png"/></a>
 						</li>
 						<li>
-							<a href=""></a>
+							<a href="#"><img src="imgs/list2.png"/></a>
 						</li>
 						<li>
-							<a href=""></a>
+							<a href="#"><img src="imgs/list3.png"/></a>
 						</li>
 						<li>
-							<a href=""></a>
+							<a href="#"><img src="imgs/list4.png"/></a>
 						</li>
 					</ul>
 				</div>
@@ -61,6 +61,7 @@
 							</a>
 						</li> -->
 					</ul>
+					<ul class="goods2 clear"></ul>
 				</div>
 			</div>
 		</section>
@@ -85,21 +86,18 @@
 		
 		class List2{
 				constructor(options) {
-					//1.准备属性
 					this.cont = options.cont;
 					this.url = options.url;
 					
-					//开启请求
 					this.load();
 					
-					//事件委托绑定事件
 					this.addEvent();
 				}
 				load(){
 					var that = this;
 					ajaxGet(this.url,function(res){
 						that.res = JSON.parse(res);
-						//3.渲染页面
+						
 						that.display();
 					})
 				}
@@ -110,7 +108,7 @@
 								<a href="details.html">
 									<img src="${this.res[i].img.img2}" />
 									<i>${this.res[i].name}</i>
-									<p><em>${this.res[i].price}</em><s class="btn">我要抢购</s></p>
+									<p><em>￥${this.res[i].price}</em><s class="btn">我要抢购</s></p>
 								</a>
 							</li>`;
 					}
@@ -161,6 +159,11 @@
 			new List2({
 				url:"http://localhost/weiboli/json/goods.json",
 				cont:document.querySelector(".goods")
+			})
+			
+			new List2({
+				url:"http://localhost/weiboli/json/goods.json",
+				cont:document.querySelector(".goods2")
 			})
 			
 		

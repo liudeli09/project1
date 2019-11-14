@@ -3,10 +3,10 @@
 
 .margin{ width:1200px; margin:0 auto;}
 
-#menu{}
+#menu{background: #f7f9f7;padding-bottom: 20px;}
 #menu .menu-top{}
-#menu .menu-top ul{display: flex;justify-content: space-around;align-items: center;height: 152px;}
-#menu .menu-top ul li{width: 112px;height: 112px;background: #0f0;}
+#menu .menu-top ul{display: flex;justify-content: space-around;align-items: center;height: 152px;background: #f7f9f7;}
+#menu .menu-top ul li{width: 112px;height: 112px;}
 #menu .menu-top ul li a{display: block;width: 112px;height: 112px;}
 
 #menu .menu-middle{background: #fff;}

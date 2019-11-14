@@ -14,12 +14,71 @@
 		
 		<section id="detail" class="clear">
 			<div class="margin">
-				<article>
+				<article class="big clear">
 					
 				</article>
+				<aside>
+					<div class="mess">
+						<h3>商家信息</h3>
+						<img src="imgs/ba.png" />
+						<span>张海***66</span>
+						<p>查看商家所有商品</p>
+					</div>
+					<ul>
+						<p>同类爆款</p>
+						<li>
+							<img src="http://img1.vboly.com/2019/10/12/412034765590000302.jpg_187_187.jpg" />
+							<a href="#">【限时免费】20g 儿童四季鼻炎膏</a>
+						</li>
+						<li>
+							<img src="http://img1.vboly.com/2019/11/12/463638034822000674.gif_187_187.gif" />
+							<a href="#">【限时免费】汽车载孙露cd唱片</a>
+						</li>
+						<li>
+							<img src="http://img1.vboly.com/2019/10/17/421121454339000250.jpg_187_187.jpg" />
+							<a href="#">【限时抢购】5双 春秋冬运动中筒</a>
+						</li>
+						<li>
+							<img src="http://img1.vboly.com/2019/10/09/416207813357000180.jpg_187_187.jpg" />
+							<a href="#">【限时免费】10ml 耳舒保健液</a>
+						</li>
+						<li>
+							<img src="http://img1.vboly.com/2019/11/01/446668714678000738.jpg_187_187.jpg" />
+							<a href="#">【京东搜索下单】墙纸壁纸自粘</a>
+						</li>
+					</ul>
+				</aside>
+				<div class="water">
+					<ul class="clear">
+						<li class="te">抢购流程</li>
+						<li>1、点击 <a href="#">我要抢购</a></li>
+						<li>2、按 <a href="#">直接下单</a> 方式</li>
+						<li>3、返回微薄利</li>
+						<li>4、商家审核订单</li>
+					</ul>
+				</div>
+				<div class="how">
+					<ul>
+						<li><a href="#">如何抢购</a></li>
+						<li><a href="#">如何晒单</a></li>
+						<li><a href="#">如何领回优惠金</a></li>
+					</ul>
+				</div>
+				<div class="fast">
+					<h3><s>温馨提示</s></h3>
+					<div class="tip">
+						<p><i>默认快递：</i>申通 中国邮政，不到的请勿下单！</p>
+						<p><i>温馨提示：</i></p>
+						<p>请不要使用淘宝客（返利网）、淘金币、店铺优惠券、分期付款、红包下单！否则将按照违规处理！</p>
+						<p><i>请务必按照微薄利提供的下单流程下单；如不按流程下单将按违规处理！</i></p>
+						<p>尺寸或规格：5双</p>
+						<p>如有运费请联系店铺客服修改包邮</p>
+						<p>不参与店铺活动</p>
+						<a href="#">点击查看买家必读》》》</a>
+					</div>
+				</div>
 			</div>
 		</section>
-		
 		<section id="footer"></section>
 	</body>
 	
@@ -40,9 +99,12 @@
             
             // 1.读取到所有商品数据
             this.load();
-
+			
             // 5.事件委托绑定事件
             this.addEvent();
+			
+			//放大镜
+			
         }
 		
         load(){
@@ -68,10 +130,17 @@
                         str += `<h3>${this.res[i].name}</h3>
 		<div class="goods-main">
 			<div class="goods-l">
-				<img src="${this.res[i].img.img2}" />
+				<div id = "wrap">
+					<img src="${this.res[i].img.img2}" />
+					<img src="${this.res[i].img.img1}" />
+					<div class="box"></div>
+				</div>
+				<div id="bigArea">
+					<img class = "da" src = "${this.res[i].img.img2}"/>
+				</div>
 				<ul>
+					<li class="act" ><img src="${this.res[i].img.img2}"/></li>
 					<li><img src="${this.res[i].img.img1}"/></li>
-					<li><img src="${this.res[i].img.img2}"/></li>
 				</ul>
 			</div>
 			<div class="goods-r">
@@ -105,6 +174,10 @@
                 }
             }
             this.tbody.innerHTML = str;
+
+			this.card();
+
+			this.mirror();
         }
 		
         addEvent(){
@@ -151,7 +224,100 @@
 		    setCookie("cars",JSON.stringify(this.cars));
 		}
 		
+		//放大镜
+		mirror(){
+			var wrap = document.getElementById("wrap");
+			var box = document.querySelector(".box");
+			var bigArea = document.getElementById("bigArea");
+			var da =document.querySelector(".da");
+			console.log(bigArea);
+			
+			
+			wrap.onmouseenter = function() {
+				box.style.display = "block";
+				bigArea.style.display = "block";
+				var r = (wrap.clientWidth - box.clientWidth) / (800 - bigArea.clientWidth);
+				// 绑定mousemove事件
+				document.onmousemove = function(e) {
+					// 计算鼠标在页面中的距离
+					var mouseX =  e.pageX;
+					var mouseY = e.pageY;
+					// 计算元素在视口中的距离
+					var elementX = offset(wrap).left;
+					var elementY = offset(wrap).top;
+					// 计算鼠标在元素中的距离
+					var resultX = mouseX - elementX - wrap.clientLeft - box.clientWidth / 2;
+					var resultY = mouseY - elementY - wrap.clientTop - box.clientHeight / 2;
+					if (resultX < 0) {
+						resultX = 0;
+					} else if (resultX > wrap.clientWidth - box.clientWidth) {
+						resultX = wrap.clientWidth - box.clientWidth;
+					}
 		
+					if (resultY < 0) {
+						resultY = 0;
+					} else if (resultY > wrap.clientHeight - box.clientHeight) {
+						resultY = wrap.clientHeight - box.clientHeight;
+					}
+					box.style.left = resultX + "px";
+					box.style.top = resultY + "px";
+					//bigArea.style.backgroundPositionX = -resultX / r + "px";
+					//bigArea.style.backgroundPositionY = -resultY / r + "px";
+					da.style.left = -resultX / r + "px";
+					da.style.top = -resultY / r + "px";
+					
+					
+				}
+		}
+		wrap.onmouseleave = function() {
+		    box.style.display = "none";
+		    bigArea.style.display = "none";
+		}
+		
+		
+		function offset(dom) {
+		    // 返回一个对象
+		    var obj = {
+		        left: 0,
+		        top: 0
+		    }
+		
+		    // 先让这个对象加上 dom的自己得到定位父元素的距离
+		    obj.left = dom.offsetLeft;
+		    obj.top = dom.offsetTop;
+		    // 判定浏览器是否是IE8 
+		    var isIE8 = window.navigator.userAgent.indexOf("MSIE 8") != -1;
+		
+		
+		    // 循环往上走 累加每一个offsetParent的offsetLeft和clientLeft 
+		    // 加每一个offsetParent的offsetTop和clientTop
+		    var offsetParent = dom.offsetParent;
+		    while (offsetParent != document.body) {
+		        if (isIE8) {
+		            obj.left += offsetParent.offsetLeft;
+		            obj.top += offsetParent.offsetTop;
+		        } else {
+		            obj.left += offsetParent.offsetLeft + offsetParent.clientLeft;
+		            obj.top += offsetParent.offsetTop + offsetParent.clientTop;
+		        }
+		        offsetParent = offsetParent.offsetParent;
+		    }
+		    return obj;
+		}
+			
+		}
+		
+		card(){
+			$(".goods-l").children("ul").children("li").click(function(){
+				console.log(1)
+				console.log(this);
+				//这里的this就是点击的当前元素 相当于e
+				$(this).addClass("act").siblings().removeClass("act");
+				$("#wrap").children("img").css("display","none").eq($(this).index()).css("display","block")
+				console.log($(this).index());
+			})
+		}
+
     }
 
     new Detail({
@@ -159,14 +325,9 @@
         tbody:document.querySelector("article")
     })
 	
+	
 	</script>
-	
-	
-	// 购物车cookie
-	
-	<script>
-		
-		
-	</script>
+
+
 	
 </html>

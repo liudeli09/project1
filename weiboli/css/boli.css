@@ -31,7 +31,7 @@ nav .nav-l .menubox .list1 li dl dd{text-align: center;border-bottom: 1px solid 
 nav .nav-l .menubox .list1 li dl dd a{color: black;}
 nav .nav-l .menubox .list1 li.active{background: #fff;color: #c81623;}
 
-nav .nav-l .welcome{width: 200px;height: 370px;background:#fff;opacity: .8;position: absolute;right: 0;top: 100px;z-index: 10;}
+nav .nav-l .welcome{width: 200px;height: 370px;background: rgba(255,255,255,.9);position: absolute;right: 0;top: 100px;z-index: 10;}
 nav .nav-l .welcome .welcome-t{height: 231px;text-align: center;padding-top: 10px;}
 nav .nav-l .welcome .welcome-t h3{font:700 18px/40px "";color: #c81623;width: 200px;}
 nav .nav-l .welcome .welcome-t img{}
@@ -62,7 +62,14 @@ nav .nav-l .welcome .notice .cont p a{color: #333;display: block;}
 #content .process img{}
 #content .new{margin-top: 25px;}
 #content .new .more{float: left;} 
-#content .new .lunbo2{width: 800px;height: 258px;background: #f0f;float: left;}
+#content .new .lunbo2{width: 800px;height: 258px;float: left;position: relative;overflow: hidden;margin-left: 10px;}
+#content .new .lunbo2 ul{width: 800px;height: 258px;}
+#content .new .lunbo2 ul li{width: 800px;height: 258px;position: absolute;left: 800px;top: 0;text-align: center;}
+#content .new .lunbo2 ul li:nth-child(1){left: 0;}
+#content .new .lunbo2 ul li a{display: inline-block;width: 184px;height: 243px;border: 1px solid #eee;padding: 3px;padding-top: 10px;}
+#content .new .lunbo2 ul li a p{font: 14px/2 "";}
+#content .new .lunbo2 ul li img{width: 160px;height: 160px;display: block;margin: 0 auto;}
+
 #content .new .lunbo3{width: 200px;height: 258px;float: right;position: relative;}
 #content .new .lunbo3 ul{overflow: hidden;height: 258px;position: relative;width: 200px;}
 #content .new .lunbo3 ul li{width: 200px;height: 258px;;position: absolute;left: 200px;top: 0;}
@@ -75,11 +82,11 @@ nav .nav-l .welcome .notice .cont p a{color: #333;display: block;}
 #content .show{height: 420px;}
 #content .show h3{height: 75px;text-align: center;color: #cf000e;font-size: 26px;font-weight: bold;line-height: 75px;}
 #content .show .lunbo4{width: 1100px;overflow: hidden;margin: 0 auto;}
-#content .show ul.show-all{width:1000%;animation:lunbo 3s infinite linear;float: none;}
+#content .show ul.show-all{width:1000%;animation:lunbo 30s infinite linear;float: none;}
 #content .show ul.show-all li{;height: 318px;width: 203px;margin-left: 5px;padding: 20px 5px 5px;border: 1px solid #ccc; float:left;}
 @keyframes lunbo{
 	0%{ margin-left:0;}
-	100%{ margin-left:-250px;}
+	100%{ margin-left:-1335px;}
 	}
 #content .show ul.show-all li:hover{ animation-play-state:paused;}
 
@@ -105,6 +112,7 @@ footer .footer-bottom .footer-imgs{margin-top: 15px;}
 footer .footer-bottom .footer-imgs a{}
 footer .footer-bottom .footer-imgs img{width: 134px;height: 50px;}
 
-.floor{position: fixed;top: 200px;right: 0;}
+.floor{position: fixed;top: 400px;right: 0;opacity: .8;}
 .floor ul{}
-.floor ul li{width: 40px;height: 40px;background: #ccc;margin: 5px 0;text-align: center;border-radius: 5px;padding: 5px;}
+.floor ul li{width: 35px;height: 35px;background: #fff;margin: 5px 0;text-align: center;border-radius: 5px;padding: 5px;border: 1px solid #ff000091;font: 14px/40px "";color: #CF000E;}
+.floor ul li:hover{background:#ff000091;color: #fff;font:600 16px/2 "";}
