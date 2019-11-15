@@ -16,6 +16,10 @@
 		// echo $name['name'];
 		// echo "<br>";
 		// echo $name['pass'];
+		if ($userlgn == ""){
+			echo "<script language=javascript>alert('please input your name');window.history.back(-1);</script>";
+			break;
+		}
 		if($userlgn == $name['name'] && $passlgn == $name['pass']){
 			echo "<script language=javascript>alert('welcome');location.href='../index.html';</script>";
 			break;
